@@ -8,7 +8,7 @@ const headerUsuario = (req, res, next) => {
 //Comprueba que el token funcione
 const loggeado = (req, res, next) => {
     if(req.cookies.token != undefined)
-        res.redirect('/')
+        res.redirect('/index')
     else         
         next();
 }

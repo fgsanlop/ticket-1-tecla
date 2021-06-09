@@ -2,11 +2,11 @@ const express = require('express');
 const middjwt = require('../midd/midd.jwt');
 const router = express.Router();
 
-router.get('/', (req, res) => {    
+router.get('/', middjwt.headerUsuario, middjwt.loggeado, (req, res) => {    
     res.render('login');
 });
 
-router.get('/signup', (req, res) => {    
+router.get('/signup', middjwt.headerUsuario, middjwt.loggeado, (req, res) => {    
     res.render('signup');
 });
 
