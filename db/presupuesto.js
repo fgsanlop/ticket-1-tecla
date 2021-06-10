@@ -22,19 +22,29 @@ const Presupuesto = sequelize.define('presupuestos', {
     },
     version: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false
+        //ERROR con defaultValue        
     },
     mes: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
+        validate: {
+            min: 1,
+            max: 12
+        }
     },
     año: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
+        validate: {
+            min: 1900,
+            max: 3000
+        }
     },
     eliminado: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
+        allowNull: false
+        //ERROR con defaultValue    
     }
 });
 
