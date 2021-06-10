@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require('./conn');
+const CostoDirecto = require("./costo.directo");
 
 const CostoDirectoValor = sequelize.define('costos_directos_valores', {
     id: {
@@ -7,6 +8,7 @@ const CostoDirectoValor = sequelize.define('costos_directos_valores', {
         primaryKey: true,
         autoIncrement: true,
     },
+    /*
     id_costo_directo: {
         type: Sequelize.INTEGER,
         references: {
@@ -15,10 +17,22 @@ const CostoDirectoValor = sequelize.define('costos_directos_valores', {
         },
         allowNull: false        
     },
+    */
     valor: {
         type: DataTypes.DECIMAL(20,2),
-        allowNull: true,        
+        allowNull: false,        
     },
+}, { 
+    timestamps: false
+});
+
+CostoDirecto.hasMany(CostoDirectoValor, {
+    foreignKey: {
+        name: 'id_costo_directo',
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    onDelete: 'CASCADE'
 });
 
 module.exports = CostoDirectoValor;

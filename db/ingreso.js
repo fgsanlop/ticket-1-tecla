@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require('./conn');
+const Presupuesto = require('./presupuesto');
 
 const Ingreso = sequelize.define('ingresos', {
     id: {
@@ -7,6 +8,7 @@ const Ingreso = sequelize.define('ingresos', {
         primaryKey: true,
         autoIncrement: true,
     },
+    /*
     id_presupuesto: {
         type: Sequelize.INTEGER,
         references: {
@@ -15,10 +17,22 @@ const Ingreso = sequelize.define('ingresos', {
         },
         allowNull: false        
     },
+    */
     concepto: {
         type: DataTypes.STRING(40),
         allowNull: true,        
     },
+}, { 
+    timestamps: false
+});
+
+Presupuesto.hasMany(Ingreso, {
+    foreignKey: {
+        name: 'id_presupuesto',
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    onDelete: 'CASCADE'
 });
 
 module.exports = Ingreso;

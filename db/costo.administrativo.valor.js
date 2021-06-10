@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require('./conn');
+const CostoAdministrativo = require('./costo.administrativo');
 
 const CostoAdministrativoValor = sequelize.define('costos_administrativos_valores', {
     id: {
@@ -7,18 +8,32 @@ const CostoAdministrativoValor = sequelize.define('costos_administrativos_valore
         primaryKey: true,
         autoIncrement: true,
     },
+    /*
     id_costo_administrativo: {
         type: Sequelize.INTEGER,
         references: {
-            model: 'costos_administrativos',
-            key: 'id'
+            model: CostoAdministrativo,
+            key: 'id',
+            onDelete: 'cascade'
         },
         allowNull: false        
     },
+    */
     valor: {
         type: DataTypes.DECIMAL(20,2),
-        allowNull: true,        
+        allowNull: false,        
+    },    
+}, { 
+    timestamps: false
+});
+
+CostoAdministrativo.hasMany(CostoAdministrativoValor, {
+    foreignKey: {
+        name: 'id_costo_administrativo',
+        type: Sequelize.INTEGER,
+        allowNull: false
     },
+    onDelete: 'CASCADE'
 });
 
 module.exports = CostoAdministrativoValor;

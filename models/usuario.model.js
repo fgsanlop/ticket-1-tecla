@@ -14,12 +14,14 @@ module.exports = class UsuarioModel {
             throw new Error('Usuario ya ha sido registrado');
         else {
             try {
+                //let nuevoUsuario = 
                 await Usuario.create({                      
                     email: this.email, 
                     pass: this.pass, 
                     nombres: this.nombres, 
                     apellidos: this.apellidos
                 });
+                //console.log(nuevoUsuario.id);      
                 return 'Usuario creado'
             } catch (err){
                 throw new Error('No se pudo registrar usuario')

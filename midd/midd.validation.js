@@ -1,5 +1,5 @@
 const Joi = require('joi')
-const validation = require('./validation')
+const validation = require('./usuario.validation')
 
 const validarLogin = async (req, res, next) => {
     try{

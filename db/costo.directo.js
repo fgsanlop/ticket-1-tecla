@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require('./conn');
+const Presupuesto = require("./presupuesto");
 
 const CostoDirecto = sequelize.define('costos_directos', {
     id: {
@@ -7,6 +8,7 @@ const CostoDirecto = sequelize.define('costos_directos', {
         primaryKey: true,
         autoIncrement: true,
     },
+    /*
     id_presupuesto: {
         type: Sequelize.INTEGER,
         references: {
@@ -14,15 +16,26 @@ const CostoDirecto = sequelize.define('costos_directos', {
             key: 'id'
         },
         allowNull: false        
-    },
+    },*/
     concepto: {
         type: DataTypes.STRING(40),
         allowNull: true,        
     },
     opcion: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: false
     }
+}, { 
+    timestamps: false
+});
+
+Presupuesto.hasMany(CostoDirecto, {
+    foreignKey: {
+        name: 'id_presupuesto',
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    onDelete: 'CASCADE'
 });
 
 module.exports = CostoDirecto;

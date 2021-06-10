@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require('./conn');
+const Recurso = require("./recurso");
 
 const RecursoPorcentaje = sequelize.define('recursos_porcentajes', {
     id: {
@@ -7,6 +8,7 @@ const RecursoPorcentaje = sequelize.define('recursos_porcentajes', {
         primaryKey: true,
         autoIncrement: true,
     },
+    /*
     id_recurso: {
         type: Sequelize.INTEGER,
         references: {
@@ -14,11 +16,22 @@ const RecursoPorcentaje = sequelize.define('recursos_porcentajes', {
             key: 'id'
         },
         allowNull: false        
-    },
+    },*/
     porcentaje: {
         type: DataTypes.INTEGER,
-        allowNull: true,        
+        allowNull: false,        
     },
+}, { 
+    timestamps: false
+});
+
+Recurso.hasMany(RecursoPorcentaje, {
+    foreignKey: {
+        name: 'id_recurso',
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    onDelete: 'CASCADE'
 });
 
 module.exports = RecursoPorcentaje;

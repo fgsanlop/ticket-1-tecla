@@ -45,6 +45,7 @@ const serverStart = async () => {
         await sequelize.authenticate();    
         await Usuario.sync({alter: true});
         await Presupuesto.sync({alter: true});         
+    
         await FlujoDeEfectivo.sync({alter: true});
         await Ingreso.sync({alter: true}); 
         await IngresoValor.sync({alter: true}); 
@@ -54,6 +55,7 @@ const serverStart = async () => {
         await CostoAdministrativoValor.sync({alter: true}); 
         await Recurso.sync({alter: true}); 
         await RecursoPorcentaje.sync({alter: true}); 
+        
         app.listen(process.env.PORT, () => {
             console.log(`Server on: http://${process.env.HOST}:${process.env.PORT}`);
         })
