@@ -29,13 +29,16 @@ const CostoDirecto = sequelize.define('costos_directos', {
     timestamps: false
 });
 
-Presupuesto.hasMany(CostoDirecto, {
+let relacion = {
     foreignKey: {
         name: 'id_presupuesto',
         type: Sequelize.INTEGER,
         allowNull: false
     },
     onDelete: 'CASCADE'
-});
+};
+
+Presupuesto.hasMany(CostoDirecto, relacion);
+CostoDirecto.belongsTo(Presupuesto, relacion);
 
 module.exports = CostoDirecto;

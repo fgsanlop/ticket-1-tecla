@@ -24,12 +24,16 @@ const IngresoValor = sequelize.define('ingresos_valores', {
     timestamps: false
 });
 
-Ingreso.hasMany(IngresoValor, {
+let relacion = {
     foreignKey: {
         name: 'id_ingreso',
         type: Sequelize.INTEGER,
         allowNull: false
     },
     onDelete: 'CASCADE'
-});
+};
+
+Ingreso.hasMany(IngresoValor, relacion);
+IngresoValor.belongsTo(Ingreso, relacion);
+
 module.exports = IngresoValor;

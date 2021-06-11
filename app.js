@@ -41,21 +41,24 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/templates');
 
-const serverStart = async () => {   
+const sincronizarTablas = async () => {
+    await Usuario.sync({alter: true});
+    await Presupuesto.sync({alter: true});  
+    await FlujoDeEfectivo.sync({alter: true});
+    await Ingreso.sync({alter: true}); 
+    await IngresoValor.sync({alter: true}); 
+    await CostoDirecto.sync({alter: true}); 
+    await CostoDirectoValor.sync({alter: true}); 
+    await CostoAdministrativo.sync({alter: true}); 
+    await CostoAdministrativoValor.sync({alter: true}); 
+    await Recurso.sync({alter: true}); 
+    await RecursoPorcentaje.sync({alter: true});
+}
+
+const iniciarServidor = async () => {   
     try {           
         await sequelize.authenticate();    
-        await Usuario.sync({alter: true});
-        await Presupuesto.sync({alter: true});  
-        await FlujoDeEfectivo.sync({alter: true});
-        await Ingreso.sync({alter: true}); 
-        await IngresoValor.sync({alter: true}); 
-        await CostoDirecto.sync({alter: true}); 
-        await CostoDirectoValor.sync({alter: true}); 
-        await CostoAdministrativo.sync({alter: true}); 
-        await CostoAdministrativoValor.sync({alter: true}); 
-        await Recurso.sync({alter: true}); 
-        await RecursoPorcentaje.sync({alter: true});
-        
+        //await sincronizarTablas();
         app.listen(process.env.PORT, () => {
             console.log(`Server on: http://${process.env.HOST}:${process.env.PORT}`);
         })
@@ -68,6 +71,6 @@ app.use('/api', usuarioView);
 app.use('/api', presupuestoView);
 app.use(templates);
 
-serverStart();
+iniciarServidor();
 
  

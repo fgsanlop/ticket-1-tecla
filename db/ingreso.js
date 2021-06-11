@@ -26,13 +26,16 @@ const Ingreso = sequelize.define('ingresos', {
     timestamps: false
 });
 
-Presupuesto.hasMany(Ingreso, {
+let relacion = {
     foreignKey: {
         name: 'id_presupuesto',
         type: Sequelize.INTEGER,
         allowNull: false
     },
     onDelete: 'CASCADE'
-});
+};
+
+Presupuesto.hasMany(Ingreso, relacion);
+Ingreso.belongsTo(Presupuesto,relacion);
 
 module.exports = Ingreso;

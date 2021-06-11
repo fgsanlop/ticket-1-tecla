@@ -25,13 +25,16 @@ const RecursoPorcentaje = sequelize.define('recursos_porcentajes', {
     timestamps: false
 });
 
-Recurso.hasMany(RecursoPorcentaje, {
+let relacion = {
     foreignKey: {
         name: 'id_recurso',
         type: Sequelize.INTEGER,
         allowNull: false
     },
     onDelete: 'CASCADE'
-});
+};
+
+Recurso.hasMany(RecursoPorcentaje, relacion);
+RecursoPorcentaje.belongsTo(Recurso, relacion);
 
 module.exports = RecursoPorcentaje;

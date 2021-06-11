@@ -27,13 +27,16 @@ const FlujoDeEfectivo = sequelize.define('flujos_de_efectivo', {
     timestamps: false
 });
 
-Presupuesto.hasMany(FlujoDeEfectivo, {
+let relacion = {
     foreignKey: {
         name: 'id_presupuesto',
         type: Sequelize.INTEGER,
         allowNull: false
     },
     onDelete: 'CASCADE'
-});
+};
+
+Presupuesto.hasMany(FlujoDeEfectivo, relacion);
+FlujoDeEfectivo.belongsTo(Presupuesto, relacion);
 
 module.exports = FlujoDeEfectivo;

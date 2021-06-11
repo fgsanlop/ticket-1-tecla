@@ -57,4 +57,14 @@ Usuario.hasMany(Presupuesto, {
     onDelete: 'CASCADE'
 });
 
+Presupuesto.belongsTo(Usuario, {
+    foreignKey: {
+        name: 'id_usuario',
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    onDelete: 'CASCADE'
+});
+
+
 module.exports = Presupuesto;

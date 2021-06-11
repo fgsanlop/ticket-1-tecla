@@ -29,13 +29,16 @@ const CostoAdministrativo = sequelize.define('costos_administrativos', {
     timestamps: false
 });
 
-Presupuesto.hasMany(CostoAdministrativo, {
+let relacion = {
     foreignKey: {
         name: 'id_presupuesto',
         type: Sequelize.INTEGER,
         allowNull: false
     },
     onDelete: 'CASCADE'
-});
+};
+
+Presupuesto.hasMany(CostoAdministrativo, relacion);
+CostoAdministrativo.belongsTo(Presupuesto, relacion);
 
 module.exports = CostoAdministrativo;
