@@ -33,7 +33,7 @@ Para correr el proyecto en un entorno de desarrollo ejecuta:
 npm run dev
 ```
 
-_La API y las vistas se mostrara en el puerto elegido y escrito en las variables de entorno_
+_La API y las vistas se mostraran en el puerto elegido y escrito en las variables de entorno_
 
 ***
 > Nota: en la raíz del proyecto hay un archivo llamado _body.ejemplo.js_ para formar un JSON para realizar una petición a la API para crear o modificar presupuestos
