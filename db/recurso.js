@@ -8,14 +8,6 @@ const Recurso = sequelize.define('recursos', {
         primaryKey: true,
         autoIncrement: true,
     },
-    /*id_presupuesto: {
-        type: Sequelize.INTEGER,
-        references: {
-            model: Presupuesto,
-            key: 'id'
-        },
-        allowNull: false        
-    },*/
     concepto: {
         type: DataTypes.STRING(40),
         allowNull: true,        
