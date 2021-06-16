@@ -4,6 +4,8 @@ __Proyecto que calcula el presupuesto de un proyecto de acuerdo a los meses y a 
 
 ## Instalación 🔧
 
+#Despues de clonar el repositorio
+
 Crea un archivo .ENV en la raíz del proyecto para configurar los parametros de despliegue...
 
 ```
